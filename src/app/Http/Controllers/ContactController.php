@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Contact;
 use App\Http\Requests\ContactRequest;
 use App\Models\User;
+use App\Models\Category;
 
 class ContactController extends Controller
 {
@@ -13,20 +14,13 @@ class ContactController extends Controller
     {
         return view('index');
     }
+
     public function confirm(ContactRequest $request)
     {
-        $form = $request->only([
-            'last-name',
-            'first-name',
-            'gender',
-            'email',
-            'postcode',
-            'address',
-            'building_name',
-            'opinion'
-        ]);
-        return view('confirm', ['form' => $form]);
+        $form = $request->all();
+        return view('confirm', compact('form'));
     }
+
     public function send(Request $request)
     {
         if ($request->get('action') === 'back') {
@@ -42,9 +36,10 @@ class ContactController extends Controller
             'opinion'
         ]);
         Contact::create($form);
+
         return view('thanks');
     }
-    public function manage()
+    public function manage(Request $request)
     {
         $result = Contact::paginate(10);
         return view('management', ['forms' => $result]);
@@ -130,11 +125,15 @@ class ContactController extends Controller
     }
 
 
-    public function register(Request $request)
+    public function register()
     {
-        $register=$request->all();
-        User::create($register);
-
-        return redirect('login');
+        return view('auth.register');
     }
+
+    public function login()
+    {
+        return view('auth.login');
+    }
+
+
 }

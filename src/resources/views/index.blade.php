@@ -83,6 +83,20 @@
       <span class="example"> 例）千駄ヶ谷マンション101</span>
     </div>
     <div>
+      <label for="category-select" class="form-title-required">お問い合わせの種類</label>
+      <select class="contact-form__input-category" name="category_id" id="category-select">
+        <option value="1">
+          ダミーデータが作成できたらここに表示する
+        </option>
+    </select>
+    <div>
+      <span class="real-check" id="category-check">※お問い合わせの種類を選択してください</span>
+    </div>
+      @error('category')
+        <span class="error-message" id="Error-category">{{ $message }}</span>
+      @enderror
+    </div>
+    <div>
       <label for="opinion" class="form-title-required">ご意見</label>
       <textarea name="opinion" id="opinion" cols="30" rows="10" maxlength="120">{{ old('opinion') }}</textarea>
       <span class="subform-title"></span>

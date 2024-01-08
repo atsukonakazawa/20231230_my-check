@@ -44,6 +44,12 @@
       <input type="hidden" name="building_name" value="{{ $form['building_name'] }}" />
     </div>
     <div class="row">
+      <label class="form-title">お問い合わせの種類</label>
+      ダミーデータが作成できたらここに表示する
+      <input type="hidden" name="category_id" value="" />
+    </div>
+
+    <div class="row">
       <span class="form-title">ご意見</span>
       <span class="opinion">{{ $form['opinion'] }}</span>
       <input type="hidden" name="opinion" value="{{ $form['opinion'] }}">

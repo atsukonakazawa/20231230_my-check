@@ -26,7 +26,7 @@ class FortifyServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+    public function boot()
     {
         Fortify::createUsersUsing(CreateNewUser::class);
 
@@ -38,7 +38,6 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.login');
         });
 
-        
 
 
     }

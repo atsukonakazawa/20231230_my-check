@@ -9,11 +9,8 @@ class Contact extends Model
 {
     use HasFactory;
 
-    protected $guarded = [
-        'id'
-    ];
-
     protected $fillable = [
+        'category_id',
         'fullname',
         'gender',
         'email',
@@ -22,4 +19,10 @@ class Contact extends Model
         'building_name',
         'opinion',
     ];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
+
 }
