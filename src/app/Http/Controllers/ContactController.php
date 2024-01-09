@@ -12,20 +12,12 @@ class ContactController extends Controller
 {
     public function show()
     {
-        return view('index');
+        $categories = Category::all();
+        return view('index', compact('categories'));
     }
 
     public function confirm(ContactRequest $request)
     {
-        $form = $request->all();
-        return view('confirm', compact('form'));
-    }
-
-    public function send(Request $request)
-    {
-        if ($request->get('action') === 'back') {
-            return redirect()->route('form.show')->withInput();
-        }
         $form = $request->only([
             'fullname',
             'gender',
@@ -35,10 +27,33 @@ class ContactController extends Controller
             'building_name',
             'opinion'
         ]);
-        Contact::create($form);
+        $category = $request->only([
+            'category_id'
+        ]);
+
+        return redirect('confirm', compact('form','category'));
+    }
+
+    public function send(Request $request)
+    {
+        if ($request->get('action') === 'back') {
+            return redirect()->route('form.show')->withInput();
+        }
+
+        $form =  $request->only([
+            'fullname',
+            'gender',
+            'email',
+            'postcode',
+            'address',
+            'building_name',
+            'opinion'
+        ]);
+        Contact::create($form)->with('category')->get();;
 
         return view('thanks');
     }
+
     public function manage(Request $request)
     {
         $result = Contact::paginate(10);

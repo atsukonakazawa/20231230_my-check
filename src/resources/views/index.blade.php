@@ -85,9 +85,12 @@
     <div>
       <label for="category-select" class="form-title-required">お問い合わせの種類</label>
       <select class="contact-form__input-category" name="category_id" id="category-select">
-        <option value="1">
-          ダミーデータが作成できたらここに表示する
+      @foreach($categories as $category)
+        <option hidden>選択してください</option>
+        <option value="{{ $category['id'] }}">
+          {{ $category['content'] }}
         </option>
+      @endforeach
     </select>
     <div>
       <span class="real-check" id="category-check">※お問い合わせの種類を選択してください</span>

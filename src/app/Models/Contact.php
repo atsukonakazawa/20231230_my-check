@@ -20,9 +20,8 @@ class Contact extends Model
         'opinion',
     ];
 
-    public function user(): BelongsTo
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }
-
 }

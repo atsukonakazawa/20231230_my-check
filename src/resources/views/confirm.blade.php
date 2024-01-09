@@ -45,7 +45,7 @@
     </div>
     <div class="row">
       <label class="form-title">お問い合わせの種類</label>
-      ダミーデータが作成できたらここに表示する
+      {{ $category['category_id'] }}
       <input type="hidden" name="category_id" value="" />
     </div>
 

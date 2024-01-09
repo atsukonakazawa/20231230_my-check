@@ -11,12 +11,7 @@ Route::post('/management', [ContactController::class, "manage"])->name("form.man
 Route::get('/search', [ContactController::class, "search"])->name("form.search");
 Route::post('/search', [ContactController::class, "search"])->name("form.search");
 Route::post('/delete', [ContactController::class, "delete"])->name("form.delete");
-Route::get('/register',[ContactController::class,'register']);
-Route::get('/login',[ContactController::class,'login']);
 
-
-Route::post('/register',[AuthController::class,'register']);
-Route::post('/login',[AuthController::class,'login']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/management',[AuthController::class,'manage']);
